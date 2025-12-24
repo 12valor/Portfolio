@@ -2,6 +2,8 @@ import Navbar from './components/Navbar';
 import ProjectCard from './components/ProjectCard';
 import Hero from './components/Hero';
 import ParticlesBackground from './components/ParticlesBackground';
+import Contact from './components/Contact';
+import TechStack from './components/TechStack';
 
 function App() {
 const Services = [
@@ -39,7 +41,8 @@ return (
 
       <div className="relative z-10">
         <Navbar />
-        <Hero /> 
+        <Hero />
+        <TechStack />
 
         <main className="max-w-6xl mx-auto py-20 px-6" id="projects">
           {/* Header section with TUPV and Entrepreneur mentions */}
@@ -52,13 +55,13 @@ return (
             </p>
           </header>
 
-          <div className="flex flex-row flex-nowrap gap-12 overflow-x-auto pb-12">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
   {Services.map((project, index) => (
-    // The '{...project}' part spreads all data (title, desc, tags) into the card
     <ProjectCard key={index} {...project} />
   ))}
 </div>
         </main>
+        <Contact />
         
         {/* Footer with your specific brand links */}
         <footer className="py-16 text-center text-zinc-700 text-sm border-t border-zinc-900 mt-20">
