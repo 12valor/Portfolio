@@ -52,11 +52,12 @@ return (
             </p>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {Services.map((project, index) => (
-              <ProjectCard key={index} {...project} />
-            ))}
-          </div>
+          <div className="flex flex-row flex-nowrap gap-12 overflow-x-auto pb-12">
+  {Services.map((project, index) => (
+    // The '{...project}' part spreads all data (title, desc, tags) into the card
+    <ProjectCard key={index} {...project} />
+  ))}
+</div>
         </main>
         
         {/* Footer with your specific brand links */}
