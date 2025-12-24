@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar';
 import ProjectCard from './components/ProjectCard';
 import Hero from './components/Hero';
+import ParticlesBackground from './components/ParticlesBackground';
 
 function App() {
   const Services = [
@@ -30,36 +31,42 @@ function App() {
     },
   ];
 
-  return (
-    <div className="min-h-screen bg-gray-50 font-sans">
-      {/* Navigation bar at the top */}
-      <Navbar />
-
-      {/* Main Hero section containing your personalized intro */}
-      <Hero /> 
-
-      <main className="max-w-6xl mx-auto py-16 px-6" id="projects">
-        <header className="mb-12 border-l-4 border-blue-600 pl-6">
-          <h2 className="text-4xl font-black text-gray-900 uppercase tracking-tight">
-            Project Showcase
-          </h2>
-          <p className="text-gray-500 mt-2 text-lg font-medium">
-            Engineering and creative works from my time at TUP-Visayas.
-          </p>
-        </header>
-
-        {/* Responsive Grid for your Services */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Services.map((project, index) => (
-            <ProjectCard key={index} {...project} />
-          ))}
-        </div>
-      </main>
+return (
+    // 2. Ensure the container is relative so particles don't overlap navbar
+    <div className="relative min-h-screen bg-zinc-950 font-sans text-white antialiased">
       
-      {/* Simple Footer */}
-      <footer className="py-10 text-center text-gray-400 text-sm border-t border-gray-100">
-        © {new Date().getFullYear()} AG Evangelista • Computer Engineering Technology
-      </footer>
+      {/* 3. The background stays pinned at the very back */}
+      <ParticlesBackground />
+
+      {/* Navbar needs to be relative to stay above particles */}
+      <div className="relative z-10">
+        <Navbar />
+        
+        {/* 4. Make sure Hero.jsx background is transparent */}
+        <Hero /> 
+
+        <main className="max-w-6xl mx-auto py-20 px-6" id="projects">
+          <header className="mb-16 border-l-4 border-blue-500 pl-6">
+            <h2 className="text-5xl font-black uppercase tracking-tighter">
+              Services & Expertise
+            </h2>
+            <p className="text-zinc-500 mt-2 text-xl font-medium">
+              Computer Engineering Technology @ TUP-Visayas | Creator | Entrepreneur
+            </p>
+          </header>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {Services.map((project, index) => (
+              // Use the bold 'featured' logic we discussed previously
+              <ProjectCard key={index} {...project} />
+            ))}
+          </div>
+        </main>
+        
+        <footer className="py-16 text-center text-zinc-700 text-sm border-t border-zinc-900 mt-20">
+          © {new Date().getFullYear()} AG Evangelista • Technowatch TUPV • Adriano's Coffee • RoastBlox
+        </footer>
+      </div>
     </div>
   );
 }
