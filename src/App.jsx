@@ -1,11 +1,14 @@
+import Navbar from './components/Navbar'; // Import the component
+
 function App() {
   return (
-    <div className="flex items-center justify-center h-screen bg-blue-600">
-      <h1 className="text-4xl font-bold text-white underline">
-        Tailwind is Working!
-      </h1>
+    <div>
+      <Navbar /> {/* Use the component here */}
+      <main className="p-8">
+        <h2 className="text-2xl font-bold">Welcome to my Portfolio</h2>
+      </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
