@@ -1,36 +1,45 @@
-export default function Hero() {
+import React, { useState, useEffect } from 'react';
+import styled, { keyframes } from 'styled-components';
+
+const Hero = () => {
+  const [displayText, setDisplayText] = useState(['', '']);
+  const finalStrings = ["HI", "WELCOME"];
+  const chars = "!<>-_\\/[]{}—=+*^?#________";
+
+  useEffect(() => {
+    let iteration = 0;
+    const interval = setInterval(() => {
+      setDisplayText(finalStrings.map((str) => 
+        str.split("").map((letter, i) => i < iteration ? letter : chars[Math.floor(Math.random() * chars.length)]).join("")
+      ));
+      if (iteration >= 10) clearInterval(interval);
+      iteration += 1/3;
+    }, 30);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative overflow-hidden bg-white py-24 border-b border-gray-100">
-      {/* Background decoration for that "Cool" vibe */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-[0.03] pointer-events-none">
-        <div className="absolute top-10 left-10 w-96 h-96 bg-blue-600 rounded-full blur-[100px]"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-indigo-600 rounded-full blur-[100px]"></div>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-6">
-          <span className="w-2 h-2 bg-blue-600 rounded-full animate-ping"></span>
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">TUPV Comptech Engineer</span>
+    <section className="relative min-h-screen pt-16 bg-zinc-950 text-white font-mono border-x border-white/5 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-12 h-full">
+        <div className="lg:col-span-8 p-12 lg:p-24 border-b border-white/5 relative">
+          <div className="inline-block px-3 py-1 bg-blue-600/10 border border-blue-500/20 text-blue-500 text-[10px] tracking-[0.3em] mb-8">
+            AUTH_USER: AG_EVANGELISTA
+          </div>
+          <h1 className="text-7xl md:text-[9rem] font-black leading-[0.8] mb-12 uppercase">
+            {displayText[0]}<br /><span className="text-zinc-800">{displayText[1]}</span>
+          </h1>
+          <p className="max-w-lg text-lg text-zinc-500 font-sans">
+            Computer Engineering Technology student at <span className="text-white">TUP-Visayas</span>. 
+            Developing <span className="text-blue-500">AI Parking Systems</span> for the Comptech Department.
+          </p>
         </div>
-        
-        <h1 className="text-6xl md:text-8xl font-black text-gray-900 tracking-tighter leading-none">
-          AG <span className="text-blue-600">Evangelista</span>
-        </h1>
-        
-        <p className="mt-8 text-xl md:text-2xl text-gray-500 max-w-3xl leading-relaxed font-medium">
-          Engineering the future through <span className="text-gray-900 font-bold underline decoration-blue-500">AI Parking Systems</span>, 
-          IoT solutions, and bold visual storytelling across YouTube and Graphic Design.
-        </p>
-
-        <div className="mt-12 flex flex-wrap gap-4">
-          <a href="#projects" className="px-8 py-4 bg-gray-900 text-white rounded-2xl font-bold hover:bg-blue-600 transition-all shadow-xl shadow-gray-200">
-            Explore My Work
-          </a>
-          <button className="px-8 py-4 border-2 border-gray-100 text-gray-900 rounded-2xl font-bold hover:bg-gray-50 transition-all">
-            Get In Touch
-          </button>
+        <div className="lg:col-span-4 bg-zinc-900/20 p-10">
+          <h3 className="text-[10px] font-black text-zinc-600 uppercase tracking-widest mb-4">// THESIS_DATA</h3>
+          <p className="text-sm text-zinc-400">"{displayText[1] === "WELCOME" ? "AI-Based Parking Space Detection System" : "LOADING_THESIS..."}"</p>
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default Hero;

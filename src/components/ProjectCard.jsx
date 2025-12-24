@@ -711,4 +711,4 @@ const StyledWrapper = styled.div`
     box-shadow: 0 0 10px rgba(92, 103, 255, 0.5);
   }`;
 
-export default Card;
+export default ProjectCard;
