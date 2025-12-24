@@ -1,12 +1,14 @@
+import { Features } from 'tailwindcss';
 import Navbar from './components/Navbar';
 import ProjectCard from './components/ProjectCard';
 
 function App() {
-  const myProjects = [
+  const Services = [
 {      title: "Arduino Projects",
       description: "A variety of Arduino-based projects demonstrating sensor integration and automation.",
       tags: ["Arduino", "C++", "IoT"],
-      link: "#"
+      link: "#",
+      Featured: true
 },
     {
       title: "Web Development Portfolio",
@@ -32,6 +34,18 @@ function App() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       
+      <section className="bg-white py-20 border-b border-gray-200">
+  <div className="max-w-6xl mx-auto px-6">
+    <h1 className="text-5xl font-extrabold text-gray-900">
+      Hi, I'm <span className="text-blue-600">AG Evangelista</span>
+    </h1>
+    <p className="mt-4 text-xl text-gray-600 max-w-2xl">
+      Computer Engineering Technology student at TUPV. I build 
+      intelligent systems, craft digital experiences, and design visual stories.
+    </p>
+  </div>
+</section>
+
       <main className="max-w-6xl mx-auto py-12 px-6">
         <header className="mb-12">
           <h2 className="text-3xl font-extrabold text-gray-900">Project Showcase</h2>
@@ -39,7 +53,7 @@ function App() {
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {myProjects.map((project, index) => (
+          {Services.map((project, index) => (
             <ProjectCard key={index} {...project} />
           ))}
         </div>
