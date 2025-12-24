@@ -14,13 +14,13 @@ const GitHubActivity = () => {
       <h2 className="text-2xl font-bold text-white mb-8">My Contributions</h2>
       
       {/* 2. Responsive & Seamless Container */}
-      <div className="w-full max-w-4xl p-6 bg-[#0d1117]/50 rounded-xl border border-gray-800 backdrop-blur-sm">
+      <div className="w-full max-w-4xl p-6 bg-[#0d1117]/50  border border-gray-800 backdrop-blur-sm">
         <div className="flex justify-center overflow-x-auto custom-scrollbar">
           <GitHubCalendar 
             username="12valor" // Change this to your username
             theme={customTheme}
             fontSize={14}
-            blockSize={12}
+            blockSize={10}
             blockMargin={4}
             hideTotalCount={false} // Set to true for a cleaner look
             showWeekdayLabels={true}

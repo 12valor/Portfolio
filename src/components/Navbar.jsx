@@ -1,3 +1,4 @@
+import { Link } from 'react-scroll';
 export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full z-[100] border-b border-white/5 bg-zinc-950/90 backdrop-blur-md">
@@ -17,7 +18,7 @@ export default function Navbar() {
         {/* Sharp Nav Links */}
         <div className="hidden md:flex h-full">
           {['HOME', 'PROJECTS', 'YOUTUBE', 'CONTACT'].map((item) => (
-            <a 
+            <a a
               key={item}
               href={`#${item.toLowerCase()}`}
               className="h-full px-10 flex items-center text-[10px] font-bold tracking-[0.2em] text-zinc-400 hover:text-white hover:bg-white/5 border-l border-white/5 transition-all"
