@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import ParticlesBackground from './components/ParticlesBackground';
 import Contact from './components/Contact';
 import TechStack from './components/TechStack';
+import GitHubActivity from './components/GitHubActivity.jsx';
 
 function App() {
 const Services = [
@@ -59,10 +60,13 @@ return (
   {Services.map((project, index) => (
     <ProjectCard key={index} {...project} />
   ))}
+
 </div>
         </main>
+          <div className="w-full max-w-6xl mx-auto px-6 mb-20">
+  <GitHubActivity />
+  </div>
         <Contact />
-        
         {/* Footer with your specific brand links */}
         <footer className="py-16 text-center text-zinc-700 text-sm border-t border-zinc-900 mt-20">
           © {new Date().getFullYear()} AG Evangelista
