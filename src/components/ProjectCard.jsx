@@ -1,3 +1,12 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMicrochip, faCode, faPallete, faVideo } from "@fortawesome/free-solid-svg-icons";
+
+const iconMap = {
+  "Arduino Projects": faMicrochip,
+  "Web Development Portfolio": faCode,
+  "Graphic Design Portfolio": faPallete,
+  "Video Editing Projects": faVideo,
+};
 export default function ProjectCard({ title, description, tags, link }) {
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300">
