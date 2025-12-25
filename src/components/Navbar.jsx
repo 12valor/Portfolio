@@ -17,7 +17,7 @@ export default function Navbar() {
 
         {/* Sharp Nav Links */}
         <div className="hidden md:flex h-full">
-          {['HOME', 'PROJECTS', 'YOUTUBE', 'CONTACT'].map((item) => (
+          {['HOME', 'SERVICES', 'YOUTUBE', 'CONTACT'].map((item) => (
             <a a
               key={item}
               href={`#${item.toLowerCase()}`}

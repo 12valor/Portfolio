@@ -1,14 +1,16 @@
 import React from 'react';
 import { GitHubCalendar } from 'react-github-calendar';
 
+
 const GitHubActivity = () => {
   // Seamless theme matching your dark background
   const customTheme = {
     light: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
     dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
   };
-
+  
   return (
+
     // 1. Centering wrapper
     <section className="flex flex-col items-center justify-center w-full py-10">
       <h2 className="text-2xl font-bold text-white mb-8">My Contributions</h2>
