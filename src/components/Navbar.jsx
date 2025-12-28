@@ -1,7 +1,28 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-scroll';
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 
-export default function Navbar() {
+export default function Navbar({ setView, view }) {
+  const navItems = [
+    { name: 'HOME', to: 'home' },
+    { name: 'ABOUT ME', to: 'about' },
+    { name: 'SERVICES', to: 'services' },
+    { name: 'CONTACT', to: 'contact' }
+  ];
+
+  const handleNavClick = (to) => {
+    if (view !== 'home') {
+      setView('home');
+      // Small timeout to allow the Home component to mount before scrolling
+      setTimeout(() => {
+        scroll.scrollTo(document.getElementById(to).offsetTop - 64, {
+          duration: 500,
+          smooth: true,
+        });
+      }, 100);
+    }
+  };
+
   const slashVariants = {
     initial: { x: "-150%", opacity: 0 },
     hover: { 
@@ -11,18 +32,10 @@ export default function Navbar() {
     }
   };
 
-const navItems = [
-  {name: 'HOME', to: 'home'},
-  {name: 'ABOUT', to: 'about'},
-  {name: 'SERVICES', to: 'services'},
-  {name: 'CONTACT', to: 'contact'}
-]
-
-return (
+  return (
     <nav className="fixed top-0 left-0 w-full z-[100] border-b border-white/5 bg-zinc-950/90 backdrop-blur-md">
       <div className="max-w-7xl mx-auto h-16 flex items-center justify-between">
         
-        {/* Brand Block */}
         <div className="flex h-full items-center">
           <div className="h-full px-6 flex items-center bg-white/5 border-r border-white/10">
             <span className="font-black text-white tracking-[0.25em] text-xs uppercase">AG.EVANGELISTA</span>
@@ -33,7 +46,6 @@ return (
           </div>
         </div>
 
-        {/* Updated Nav Links */}
         <div className="hidden md:flex h-full">
           {navItems.map((item) => (
             <ScrollLink
@@ -42,7 +54,8 @@ return (
               smooth={true}
               duration={500}
               spy={true}
-              offset={-64} // Offset for navbar height (h-16 = 64px)
+              offset={-64}
+              onClick={() => handleNavClick(item.to)}
               className="relative h-full px-10 flex items-center text-[10px] font-bold tracking-[0.2em] text-zinc-400 hover:text-white hover:bg-white/5 border-l border-white/5 transition-all overflow-hidden group cursor-pointer"
             >
               <motion.div 
