@@ -12,7 +12,7 @@ const Hero = () => {
         <LiquidEther 
           colors={['#1e3a8a', '#2563eb', '#454545ff']} 
           mouseForce={30}
-          cursorSize={100}
+          cursorSize={120}
           autoDemo={true}
         />
         <div className="absolute inset-0 bg-zinc-950/40 backdrop-blur-[1px]" />
