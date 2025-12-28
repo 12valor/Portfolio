@@ -18,10 +18,12 @@
     "@tailwindcss/postcss": "^4.1.18",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.23.26",
     "gl-matrix": "^3.4.4",
     "gsap": "^3.14.2",
     "lucide-react": "^0.562.0",
+    "motion": "^12.23.26",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-github-calendar": "^5.0.3",
@@ -29,6 +31,7 @@
     "react-router-dom": "^7.11.0",
     "react-scroll": "^1.9.3",
     "styled-components": "^6.1.19",
+    "tailwind-merge": "^3.4.0",
     "three": "^0.182.0"
   },
   "devDependencies": {
