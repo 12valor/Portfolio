@@ -52,17 +52,9 @@ const InfiniteMenuSection = () => {
         </p>
       </motion.header>
 
-      <div className="h-[600px] w-full bg-zinc-900/10 border border-white/5 relative rounded-sm overflow-hidden cursor-target">
+      <div className="h-[400px] w-full bg-zinc-900/10 border border-black/5 relative rounded-sm overflow-hidden cursor-target">
          <InfiniteMenu items={clientNodes} scale={1.2} />
          
-         <div className="absolute top-6 left-6 pointer-events-none border-l border-blue-500/50 pl-3">
-            <p className="text-[10px] font-mono text-blue-500 animate-pulse uppercase tracking-[0.3em]">
-              Scanning_Network_Nodes...
-            </p>
-            <p className="text-[9px] font-mono text-zinc-600 uppercase mt-1">
-              Active_Links: {clientNodes.length}
-            </p>
-         </div>
       </div>
     </section>
   );
