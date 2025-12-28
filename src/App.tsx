@@ -1,3 +1,4 @@
+// App.tsx
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring, useTransform } from 'framer-motion';
 
@@ -6,7 +7,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import { HeroParallax } from './components/HeroParallax';
 import { Timeline } from './components/Timeline';
-import ProjectCard from './components/ProjectCard';
 import GitHubActivity from './components/GitHubActivity';
 import Contact from './components/Contact';
 import TargetCursor from './components/TargetCursor';
@@ -17,7 +17,7 @@ import InfiniteMenuSection from './components/InfiniteMenuSection';
 import { Skill } from './types/skills';
 import { mySkills } from './data/skillsData';
 
-// --- PROJECT ARCHIVE DATA (15 Items) ---
+// --- PROJECT ARCHIVE DATA ---
 const portfolioProducts = [
   { title: "AI Parking Monitoring System", link: "#", thumbnail: "/parking-monitor.jpg" },
   { title: "RoastBloxx Channel", link: "https://youtube.com/@RoastBloxx", thumbnail: "/roastbloxx.jpg" },
@@ -41,10 +41,11 @@ const timelineData = [
   {
     title: "2025",
     content: (
-      <div>
-        <p className="text-white text-lg md:text-xl font-bold mb-8 font-display italic leading-relaxed">
+      <div className="font-display"> {/* Poppins font for content */}
+        <p className="text-white text-lg md:text-xl font-bold mb-8 italic leading-relaxed">
           Expanded my expertise in upscaling workflows, React development, advanced web development practices, and content editing.
         </p>
+        {/* Grid of minimized images with a central gap */}
         <div className="grid grid-cols-2 gap-4">
           <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" />
           <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" />
@@ -57,15 +58,16 @@ const timelineData = [
   {
     title: "2024",
     content: (
-      <div>
-        <p className="text-white text-lg md:text-xl font-bold mb-8 font-display italic leading-relaxed">
-          Built a strong foundation in embedded systems and graphic design.
+      <div className="font-display"> {/* Poppins font for content */}
+        <p className="text-white text-lg md:text-xl font-bold mb-8 italic leading-relaxed">
+          Built and launched Aceternity UI and Aceternity UI Pro from scratch.
         </p>
-        <div className="grid grid-cols-2 gap-4">
-          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" />
-          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" />
-          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" />
-          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" />
+        {/* The modified grid of minimized pictures with a distinct central gap, using h-48 */}
+        <div className="grid grid-cols-2 gap-6">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" alt="Deploy UI" />
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" alt="Auth UI" />
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" alt="Pricing UI" />
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" alt="Components UI" />
         </div>
       </div>
     ),
@@ -73,8 +75,8 @@ const timelineData = [
   {
     title: "2023",
     content: (
-      <div>
-        <p className="text-white text-lg md:text-xl font-bold mb-8 font-display italic leading-relaxed">
+      <div className="font-display"> {/* Poppins font for content */}
+        <p className="text-white text-lg md:text-xl font-bold mb-8 italic leading-relaxed">
           Explored game development with a focus on Roblox experiences and mechanics.
         </p>
         <div className="h-64 bg-zinc-900/50 rounded-xl border border-white/5 overflow-hidden">
@@ -86,8 +88,8 @@ const timelineData = [
   {
     title: "2022",
     content: (
-      <div>
-        <p className="text-white text-lg md:text-xl font-bold mb-8 font-display italic leading-relaxed">
+      <div className="font-display"> {/* Poppins font for content */}
+        <p className="text-white text-lg md:text-xl font-bold mb-8 italic leading-relaxed">
           Gained fundamental knowledge in computer networking.
         </p>
         <div className="p-8 bg-zinc-900/30 border border-white/5 rounded-xl font-mono text-blue-500 text-xs">
@@ -107,7 +109,7 @@ function App() {
   const smoothY = useSpring(scrollY, { stiffness: 100, damping: 30 });
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
-  // RE-CALIBRATED SCROLL OFFSETS (Adjusted for 350vh Parallax + Timeline)
+  // RE-CALIBRATED SCROLL ENGINE
   const yHeroOriginal = useTransform(smoothY, [0, 500], [0, -100]);
   const yTech = useTransform(smoothY, [8500, 10000], [30, -30]); 
   const yHeader = useTransform(smoothY, [10500, 12000], [40, -40]); 
@@ -115,14 +117,14 @@ function App() {
   const filteredSkills = activeCategory === 'ALL' ? mySkills : mySkills.filter(skill => skill.category === activeCategory);
 
   return (
-    // overflow-x-clip prevents horizontal scroll while allowing sticky to work
+    // overflow-x-clip prevents horizontal scroll while allowing sticky to work for the years
     <div className="relative min-h-screen font-sans text-white bg-zinc-950 overflow-x-clip selection:bg-blue-600/30">
       
       <TargetCursor targetSelector="h1, h2, h3, p, a, button" spinDuration={3} hideDefaultCursor={true} />
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-blue-600 origin-left z-[6000]" style={{ scaleX }} />
       <Navbar setView={setView} />
 
-      {/* Main Container - MUST be overflow-visible for sticky labels */}
+      {/* Main Container - MUST be overflow-visible for sticky year labels */}
       <div className="relative z-10 overflow-visible">
         <AnimatePresence mode="wait">
           {view === 'home' ? (
@@ -162,6 +164,8 @@ function App() {
               </section>
 
               <InfiniteMenuSection />
+              
+              {/* TERMINAL CONTACT */}
               <section id="contact" className="py-24"><Contact /></section>
             </motion.div>
           ) : (
@@ -180,15 +184,47 @@ function App() {
 }
 
 const SkillCard = ({ skill }: { skill: Skill }) => {
-  const iconPath = new URL(`./assets/tech/${skill.id}.png`, import.meta.url).href;
+  // Try loading the webp version specifically
+  const iconPath = new URL(`./assets/tech/${skill.id}.webp`, import.meta.url).href;
+
   return (
-    <GlareHover width="100%" height="auto" background="rgba(255, 255, 255, 0.02)" borderColor="rgba(255, 255, 255, 0.05)" glareColor="#3b82f6" glareOpacity={0.08} className="skill-card-trigger group rounded-xl">
+    <GlareHover 
+      width="100%" 
+      height="auto" 
+      background="rgba(255, 255, 255, 0.02)" 
+      borderColor="rgba(255, 255, 255, 0.05)" 
+      glareColor="#3b82f6" 
+      glareOpacity={0.08} 
+      className="skill-card-trigger group rounded-xl"
+    >
       <div className="p-8 w-full space-y-6 text-left font-sans">
         <div className="flex items-center gap-5">
           <div className="w-14 h-14 rounded-xl bg-zinc-900/50 p-3 border border-white/5 flex items-center justify-center overflow-hidden">
-            <img src={iconPath} alt="" className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110" onError={(e) => { e.currentTarget.src = `https://cdn.simpleicons.org/${skill.id}/white`; }} />
+            <img 
+              src={iconPath} 
+              alt={skill.name} 
+              className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110" 
+              onError={(e) => { 
+                // 1. Try PNG if WebP fails
+                if (!e.currentTarget.src.includes('.png') && !e.currentTarget.src.includes('simpleicons')) {
+                  e.currentTarget.src = new URL(`./assets/tech/${skill.id}.png`, import.meta.url).href;
+                } 
+                // 2. Finally, try Simple Icons if both local files fail
+                else {
+                  const fallbackId = skill.id === 'capcut' ? 'video' : skill.id;
+                  e.currentTarget.src = `https://cdn.simpleicons.org/${fallbackId}/white`;
+                  
+                  // Prevent infinite loop if Simple Icon also 404s
+                  e.currentTarget.onerror = () => {
+                    e.currentTarget.src = 'https://cdn.simpleicons.org/elementor/white'; 
+                  };
+                }
+              }} 
+            />
           </div>
-          <h3 className="text-xl font-bold text-white font-display group-hover:text-blue-500 transition-colors uppercase italic tracking-tighter">{skill.name}</h3>
+          <h3 className="text-xl font-bold text-white font-display group-hover:text-blue-500 transition-colors uppercase italic tracking-tighter">
+            {skill.name}
+          </h3>
         </div>
         <div className="flex items-baseline gap-2 font-display">
           <span className="text-4xl font-black text-white italic">{skill.projectCount}</span>

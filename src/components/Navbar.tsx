@@ -118,7 +118,7 @@ export default function Navbar({ setView }: { setView: (v: string) => void }) {
           </div>
         </MenuItem>
 
-        <MenuItem setActive={setActive} active={active} item="ENGINEERING">
+        <MenuItem setActive={setActive} active={active} item="SERVICES">
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink onClick={() => scrollTo("about")}>Tech Arsenal</HoveredLink>
             <HoveredLink onClick={() => scrollTo("services")}>Services Offered</HoveredLink>
