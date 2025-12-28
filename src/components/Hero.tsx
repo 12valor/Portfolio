@@ -23,11 +23,10 @@ const Hero = () => {
         <SplitText
           text="AG_EVANGELISTA"
           tag="h1"
-          className="cursor-target text-7xl md:text-9xl font-black italic tracking-tighter uppercase text-white"
+          className="cursor-target text-9xl md:text-[10rem] font-black italic tracking-tighter uppercase text-white leading-none"
           delay={50}
           duration={0.8}
           ease="expo.out"
-          // --- LOOP LOGIC ADDED HERE ---
           to={{ 
             opacity: 1, 
             y: 0, 
