@@ -46,6 +46,11 @@ const servicesData = [
     title: "Hardware IoT",
     description: "Sensor-fused Arduino systems, firmware optimization, and real-time data monitoring.",
     mastery: "PROFICIENT",
+  },
+  {
+    title: "Graphic Design",
+    description: "Cutting-edge visual branding, UI/UX design, and motion graphics for digital platforms.",
+    mastery: "CREATIVE ENOUGH",
   }
 ];
 
@@ -149,17 +154,18 @@ function App() {
                   <p className="text-zinc-500 text-lg max-w-2xl mx-auto">Click a service to explore deployment protocols and live examples.</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center">
-                  {servicesData.map((service, index) => (
-                    <ServicesCard 
-                      key={index}
-                      title={service.title}
-                      description={service.description}
-                      MasteryBadge={service.mastery}
-                      CTAText="01_VIEW_PORTFOLIO.EXE"
-                    />
-                  ))}
-                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8 place-items-center">
+  {servicesData.map((service, index) => (
+    <ServicesCard 
+      key={index}
+      title={service.title}
+      description={service.description}
+      MasteryBadge={service.mastery}
+      path={service.path} // New prop
+      setView={setView}   // Pass setView function
+    />
+  ))}
+</div>
               </section>
 
               <InfiniteMenuSection />
