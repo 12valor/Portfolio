@@ -114,16 +114,7 @@ export const Header = () => {
     <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
       <h1 className="text-4xl md:text-7xl font-bold uppercase tracking-tighter text-white font-display">
         Project Archive <br /> 
-        <span className="text-blue-600 text-xl md:text-2xl tracking-widest font-mono">// DIR_001</span>
       </h1>
-      <p className="max-w-xl mt-8 font-dm text-[12px] md:text-[14px] text-zinc-400 leading-relaxed tracking-wide">
-        Executing system-wide scan for **AG Evangelista** technical directives. <br />
-        Retrieving hardware modules, full-stack architecture, 
-        and digital strategy assets developed for 
-        <span className="text-zinc-100 font-medium"> TUP-Visayas </span> 
-        and 
-        <span className="text-zinc-100 font-medium"> RoastBloxx</span>.
-      </p>
     </div>
   );
 };
