@@ -13,6 +13,12 @@ import GlareHover from './components/GlareHover';
 import InfiniteMenuSection from './components/InfiniteMenuSection';
 import ServicesCard from './components/ServicesCard';
 
+// Page Imports
+import WebsiteExamples from './pages/WebsiteExamples';
+import VideoExamples from './pages/VideoExamples';
+import ArduinoExamples from './pages/ArduinoExamples';
+import GraphicExamples from './pages/GraphicExamples';
+
 // Data & Type Imports
 import { Skill } from './types/skills';
 import { mySkills } from './data/skillsData';
@@ -30,27 +36,31 @@ const portfolioProducts = [
   { title: "Modern OS Research", link: "#", thumbnail: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?q=80&w=600" },
 ];
 
-// --- DATA: HIGH-IMPACT SERVICES ---
+// --- DATA: 4-CARD HIGH-IMPACT SERVICES ---
 const servicesData = [
   {
     title: "Web Engineering",
     description: "Architecting high-performance React applications with extreme Glassmorphism and seamless UX.",
     mastery: "ADVANCED_SYSTEMS",
+    path: "website"
   },
   {
     title: "Content Strategy",
     description: "Data-driven high-retention scripting and editing for Roblox commentary channels.",
     mastery: "ELITE_EDITOR",
+    path: "video"
   },
   {
     title: "Hardware IoT",
     description: "Sensor-fused Arduino systems, firmware optimization, and real-time data monitoring.",
     mastery: "PROFICIENT",
+    path: "arduino"
   },
   {
     title: "Graphic Design",
-    description: "Cutting-edge visual branding, UI/UX design, and motion graphics for digital platforms.",
-    mastery: "CREATIVE ENOUGH",
+    description: "Visual identity and branding assets optimized for digital and physical deployment.",
+    mastery: "VISUAL_ENGINEER",
+    path: "graphic"
   }
 ];
 
@@ -85,9 +95,8 @@ function App() {
   const [view, setView] = useState<'home' | string>('home');
   const [activeCategory, setActiveCategory] = useState<string>('ALL');
 
-  const { scrollY, scrollYProgress } = useScroll();
+  const { scrollY } = useScroll(); // scaleX removed
   const smoothY = useSpring(scrollY, { stiffness: 100, damping: 30 });
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   const yHero = useTransform(smoothY, [0, 500], [0, -150]);
   const filteredSkills = activeCategory === 'ALL' ? mySkills : mySkills.filter(s => s.category === activeCategory);
@@ -95,11 +104,11 @@ function App() {
   return (
     <div className="relative min-h-screen font-poppins text-white bg-black overflow-x-clip selection:bg-blue-600 selection:text-white">
       
-      {/* GLOBAL POPPINS IMPORT */}
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap');`}</style>
       
+      {/* Scroll Bar motion.div was here - REMOVED */}
+      
       <TargetCursor targetSelector="h1, h2, h3, p, a, button" spinDuration={3} hideDefaultCursor={true} />
-      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 origin-left z-[6000]" style={{ scaleX }} />
       <Navbar setView={setView} />
 
       <div className="relative z-10 overflow-visible">
@@ -107,24 +116,20 @@ function App() {
           {view === 'home' ? (
             <motion.div key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               
-              {/* SECTION 1: HERO */}
               <section id="home" className="h-screen overflow-hidden">
                 <motion.div style={{ y: yHero }} className="h-full">
                   <Hero />
                 </motion.div>
               </section>
 
-              {/* SECTION 2: PARALLAX SHOWCASE (Removed bottom margin) */}
               <section id="parallax-showcase" className="relative z-20 mb-0">
                 <HeroParallax products={portfolioProducts} />
               </section>
 
-              {/* SECTION 3: TIMELINE (Pulled up with negative margin to fix the gap) */}
               <div className="relative mt-[-15rem] md:mt-[-25rem] lg:mt-[-35rem] z-30">
                 <Timeline data={timelineData} />
               </div>
 
-              {/* SECTION 4: TECHNICAL ARSENAL */}
               <section id="about" className="max-w-6xl mx-auto px-6 py-32 border-t border-white/5 relative z-40 bg-black">
                 <div className="mb-20">
                   <h2 className="text-6xl font-black uppercase italic tracking-tighter">
@@ -145,37 +150,41 @@ function App() {
                 </div>
               </section>
 
-              {/* SECTION 5: SERVICES */}
               <section id="services" className="max-w-7xl mx-auto px-6 py-32 border-t border-white/5 relative z-40 bg-black">
                 <div className="mb-20 text-center">
                   <h2 className="text-6xl font-black uppercase italic tracking-tighter mb-4">
                     Services <span className="text-blue-600 underline decoration-blue-500/30">Offered</span>
                   </h2>
-                  <p className="text-zinc-500 text-lg max-w-2xl mx-auto">Click a service to explore deployment protocols and live examples.</p>
+                  <p className="text-zinc-500 text-lg max-w-2xl mx-auto">Click a service card to initialize visual documentation and deployment logs.</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8 place-items-center">
-  {servicesData.map((service, index) => (
-    <ServicesCard 
-      key={index}
-      title={service.title}
-      description={service.description}
-      MasteryBadge={service.mastery}
-      path={service.path} // New prop
-      setView={setView}   // Pass setView function
-    />
-  ))}
-</div>
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 place-items-center">
+                  {servicesData.map((service, index) => (
+                    <ServicesCard 
+                      key={index}
+                      title={service.title}
+                      description={service.description}
+                      MasteryBadge={service.mastery}
+                      path={service.path}
+                      setView={setView}
+                    />
+                  ))}
+                </div>
               </section>
 
               <InfiniteMenuSection />
-              
-              {/* SECTION 6: CONTACT */}
               <section id="contact" className="relative z-40 bg-black">
                 <Contact />
               </section>
-
             </motion.div>
+          ) : view === 'website' ? (
+            <WebsiteExamples setView={setView} />
+          ) : view === 'video' ? (
+            <VideoExamples setView={setView} />
+          ) : view === 'arduino' ? (
+            <ArduinoExamples setView={setView} />
+          ) : view === 'graphic' ? (
+            <GraphicExamples setView={setView} />
           ) : (
             <div className="min-h-screen flex items-center justify-center">
                 <button onClick={() => setView('home')} className="px-10 py-4 bg-white text-black font-black uppercase tracking-widest italic hover:bg-blue-600 hover:text-white transition-all rounded-full">
@@ -185,7 +194,6 @@ function App() {
           )}
         </AnimatePresence>
 
-        {/* FOOTER */}
         <footer className="py-20 text-center border-t border-white/5 bg-black relative z-50">
           <p className="text-zinc-600 text-[11px] uppercase tracking-[0.5em] font-medium">
             © {new Date().getFullYear()} AG EVANGELISTA // TUPV COMPTECH
@@ -196,10 +204,8 @@ function App() {
   );
 }
 
-// --- SUB-COMPONENT: SKILLCARD (Icon Handling) ---
 const SkillCard = ({ skill }: { skill: Skill }) => {
   const iconPath = new URL(`./assets/tech/${skill.id}.webp`, import.meta.url).href;
-
   return (
     <GlareHover 
       width="100%" height="auto" 

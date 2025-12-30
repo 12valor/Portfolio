@@ -14,12 +14,10 @@ const transition = {
 
 const MenuItem = ({ setActive, active, item, children }: any) => {
   return (
-    // Added 'group' and padding to bridge the gap between button and menu
-    <div 
-      onMouseEnter={() => setActive(item)} 
-      className="relative pb-2" 
-    >
+    <div className="relative pb-2">
       <motion.p
+        // LOGIC FIX: Trigger only when hovering the actual text
+        onMouseEnter={() => setActive(item)} 
         transition={{ duration: 0.3 }}
         className="cursor-pointer text-zinc-400 hover:text-white transition-colors font-display font-medium text-sm"
       >
@@ -59,7 +57,6 @@ const Menu = ({ setActive, children }: { setActive: (item: string | null) => voi
   );
 };
 
-// --- REMAINDER OF YOUR SUB-COMPONENTS (HoveredLink, ProductItem) ---
 const HoveredLink = ({ children, ...rest }: any) => {
   return (
     <a {...rest} className="text-zinc-400 hover:text-blue-500 transition-colors text-sm font-sans block py-1 cursor-pointer">
@@ -80,7 +77,6 @@ const ProductItem = ({ title, description, href, src }: any) => {
   );
 };
 
-// --- MAIN NAVBAR COMPONENT ---
 export default function Navbar({ setView }: { setView: (v: string) => void }) {
   const [active, setActive] = useState<string | null>(null);
 
@@ -88,20 +84,22 @@ export default function Navbar({ setView }: { setView: (v: string) => void }) {
     setView("home");
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
-    setActive(null); // Close menu after clicking
+    setActive(null); 
   };
 
   return (
     <div className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-[5000]")}>
       <Menu setActive={setActive}>
         {/* SYSTEM */}
-        <MenuItem setActive={setActive} active={active} item="SYSTEM">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink onClick={() => scrollTo("home")}>Initialization</HoveredLink>
-            <HoveredLink onClick={() => scrollTo("parallax-showcase")}>Project Field</HoveredLink>
-            <HoveredLink onClick={() => scrollTo("about")}>Biometric Identity</HoveredLink>
-          </div>
-        </MenuItem>
+        <div onClick={() => scrollTo("home")}>
+          <MenuItem setActive={setActive} active={active} item="SYSTEM">
+            <div className="flex flex-col space-y-4 text-sm">
+              <HoveredLink onClick={() => scrollTo("home")}>Initialization</HoveredLink>
+              <HoveredLink onClick={() => scrollTo("parallax-showcase")}>Project Field</HoveredLink>
+              <HoveredLink onClick={() => scrollTo("about")}>Biometric Identity</HoveredLink>
+            </div>
+          </MenuItem>
+        </div>
 
         {/* PROJECTS */}
         <MenuItem setActive={setActive} active={active} item="PROJECTS">
@@ -131,10 +129,8 @@ export default function Navbar({ setView }: { setView: (v: string) => void }) {
         </MenuItem>
 
         {/* CONTACT */}
-        <div onMouseEnter={() => setActive("CONTACT")}>
-          <MenuItem setActive={setActive} active={active} item="CONTACT">
-             {/* Even though Contact has no children, we wrap it in MenuItem for consistency */}
-          </MenuItem>
+        <div onClick={() => scrollTo("contact")}>
+          <MenuItem setActive={setActive} active={active} item="CONTACT" />
         </div>
       </Menu>
     </div>
