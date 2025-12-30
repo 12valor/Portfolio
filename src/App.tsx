@@ -7,50 +7,58 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import { HeroParallax } from './components/HeroParallax';
 import { Timeline } from './components/Timeline';
-import GitHubActivity from './components/GitHubActivity';
 import Contact from './components/Contact';
 import TargetCursor from './components/TargetCursor';
 import GlareHover from './components/GlareHover';
 import InfiniteMenuSection from './components/InfiniteMenuSection';
+import ServicesCard from './components/ServicesCard';
 
 // Data & Type Imports
 import { Skill } from './types/skills';
 import { mySkills } from './data/skillsData';
 
-// --- PROJECT ARCHIVE DATA ---
+// --- DATA: PROJECTS FOR PARALLAX ---
 const portfolioProducts = [
-  { title: "AI Parking Monitoring System", link: "#", thumbnail: "/parking-monitor.jpg" },
+  { title: "AI Parking Monitoring", link: "#", thumbnail: "/parking-monitor.jpg" },
   { title: "RoastBloxx Channel", link: "https://youtube.com/@RoastBloxx", thumbnail: "/roastbloxx.jpg" },
-  { title: "Technowatch Web Terminal", link: "#", thumbnail: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600" },
+  { title: "Technowatch Terminal", link: "#", thumbnail: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600" },
   { title: "Adriano's Branding", link: "#", thumbnail: "/adrianos.jpg" },
   { title: "Flow E-Commerce", link: "#", thumbnail: "/flow.jpg" },
   { title: "Arduino IoT Labs", link: "#", thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600" },
   { title: "QuickQ Production", link: "#", thumbnail: "/quickq.jpg" },
   { title: "TensorFlow Models", link: "#", thumbnail: "https://images.unsplash.com/photo-1555949963-aa29bf1888ae?q=80&w=600" },
   { title: "Modern OS Research", link: "#", thumbnail: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?q=80&w=600" },
-  { title: "Comptech TUPV Identity", link: "#", thumbnail: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600" },
-  { title: "Budget Tracker UI", link: "#", thumbnail: "/budget.jpg" },
-  { title: "Pixar 3D Scenes", link: "#", thumbnail: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=600" },
-  { title: "Arduino IR Sensor Hub", link: "#", thumbnail: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=600" },
-  { title: "Gas Detection Firmware", link: "#", thumbnail: "https://images.unsplash.com/photo-1581092334651-ddf26d9a1930?q=80&w=600" },
-  { title: "System Scan Protocol", link: "#", thumbnail: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600" },
 ];
 
-// --- TIMELINE DATA (Engineering Journey) ---
+// --- DATA: HIGH-IMPACT SERVICES ---
+const servicesData = [
+  {
+    title: "Web Engineering",
+    description: "Architecting high-performance React applications with extreme Glassmorphism and seamless UX.",
+    mastery: "ADVANCED_SYSTEMS",
+  },
+  {
+    title: "Content Strategy",
+    description: "Data-driven high-retention scripting and editing for Roblox commentary channels.",
+    mastery: "ELITE_EDITOR",
+  },
+  {
+    title: "Hardware IoT",
+    description: "Sensor-fused Arduino systems, firmware optimization, and real-time data monitoring.",
+    mastery: "PROFICIENT",
+  }
+];
+
+// --- DATA: ENGINEERING TIMELINE ---
 const timelineData = [
   {
     title: "2025",
     content: (
-      <div className="font-display"> {/* Poppins font for content */}
-        <p className="text-white text-lg md:text-xl font-bold mb-8 italic leading-relaxed">
-          Expanded my expertise in upscaling workflows, React development, advanced web development practices, and content editing.
-        </p>
-        {/* Grid of minimized images with a central gap */}
+      <div className="font-poppins">
+        <p className="text-white text-lg font-bold mb-8 italic">Pivoting towards AI Infrastructure & Modern UI Frameworks.</p>
         <div className="grid grid-cols-2 gap-4">
-          <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" />
-          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" />
-          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" />
-          <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" />
+          <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=800" className="rounded-3xl h-48 w-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Work 01" />
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800" className="rounded-3xl h-48 w-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Work 02" />
         </div>
       </div>
     ),
@@ -58,47 +66,14 @@ const timelineData = [
   {
     title: "2024",
     content: (
-      <div className="font-display"> {/* Poppins font for content */}
-        <p className="text-white text-lg md:text-xl font-bold mb-8 italic leading-relaxed">
-          Built and launched Aceternity UI and Aceternity UI Pro from scratch.
-        </p>
-        {/* The modified grid of minimized pictures with a distinct central gap, using h-48 */}
-        <div className="grid grid-cols-2 gap-6">
-          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" alt="Deploy UI" />
-          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" alt="Auth UI" />
-          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" alt="Pricing UI" />
-          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800" className="rounded-xl h-48 w-full object-cover border border-white/5 grayscale hover:grayscale-0 transition-all duration-500" alt="Components UI" />
+      <div className="font-poppins">
+        <p className="text-white text-lg font-bold mb-8 italic">Scaled RoastBloxx and mastered digital content hooks.</p>
+        <div className="h-64 bg-zinc-900/50 rounded-3xl overflow-hidden border border-white/5">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Work 03" />
         </div>
       </div>
     ),
-  },
-  {
-    title: "2023",
-    content: (
-      <div className="font-display"> {/* Poppins font for content */}
-        <p className="text-white text-lg md:text-xl font-bold mb-8 italic leading-relaxed">
-          Explored game development with a focus on Roblox experiences and mechanics.
-        </p>
-        <div className="h-64 bg-zinc-900/50 rounded-xl border border-white/5 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" alt="Roblox Dev" />
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "2022",
-    content: (
-      <div className="font-display"> {/* Poppins font for content */}
-        <p className="text-white text-lg md:text-xl font-bold mb-8 italic leading-relaxed">
-          Gained fundamental knowledge in computer networking.
-        </p>
-        <div className="p-8 bg-zinc-900/30 border border-white/5 rounded-xl font-mono text-blue-500 text-xs">
-          PROTOCOL_HANDSHAKE: SUCCESSFUL <br />
-          NETWORK_INFRASTRUCTURE_V1: DEPLOYED.
-        </div>
-      </div>
-    ),
-  },
+  }
 ];
 
 function App() {
@@ -109,128 +84,148 @@ function App() {
   const smoothY = useSpring(scrollY, { stiffness: 100, damping: 30 });
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
-  // RE-CALIBRATED SCROLL ENGINE
-  const yHeroOriginal = useTransform(smoothY, [0, 500], [0, -100]);
-  const yTech = useTransform(smoothY, [8500, 10000], [30, -30]); 
-  const yHeader = useTransform(smoothY, [10500, 12000], [40, -40]); 
-
-  const filteredSkills = activeCategory === 'ALL' ? mySkills : mySkills.filter(skill => skill.category === activeCategory);
+  const yHero = useTransform(smoothY, [0, 500], [0, -150]);
+  const filteredSkills = activeCategory === 'ALL' ? mySkills : mySkills.filter(s => s.category === activeCategory);
 
   return (
-    // overflow-x-clip prevents horizontal scroll while allowing sticky to work for the years
-    <div className="relative min-h-screen font-sans text-white bg-zinc-950 overflow-x-clip selection:bg-blue-600/30">
+    <div className="relative min-h-screen font-poppins text-white bg-black overflow-x-clip selection:bg-blue-600 selection:text-white">
+      
+      {/* GLOBAL POPPINS IMPORT */}
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap');`}</style>
       
       <TargetCursor targetSelector="h1, h2, h3, p, a, button" spinDuration={3} hideDefaultCursor={true} />
-      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-blue-600 origin-left z-[6000]" style={{ scaleX }} />
+      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 origin-left z-[6000]" style={{ scaleX }} />
       <Navbar setView={setView} />
 
-      {/* Main Container - MUST be overflow-visible for sticky year labels */}
       <div className="relative z-10 overflow-visible">
         <AnimatePresence mode="wait">
           {view === 'home' ? (
-            <motion.div key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="overflow-visible">
+            <motion.div key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               
+              {/* SECTION 1: HERO */}
               <section id="home" className="h-screen overflow-hidden">
-                <motion.div style={{ y: yHeroOriginal }} className="h-full pt-10"><Hero /></motion.div>
+                <motion.div style={{ y: yHero }} className="h-full">
+                  <Hero />
+                </motion.div>
               </section>
 
-              <section id="parallax-showcase">
+              {/* SECTION 2: PARALLAX SHOWCASE (Removed bottom margin) */}
+              <section id="parallax-showcase" className="relative z-20 mb-0">
                 <HeroParallax products={portfolioProducts} />
               </section>
 
-              {/* TIMELINE SECTION */}
-              <Timeline data={timelineData} />
+              {/* SECTION 3: TIMELINE (Pulled up with negative margin to fix the gap) */}
+              <div className="relative mt-[-15rem] md:mt-[-25rem] lg:mt-[-35rem] z-30">
+                <Timeline data={timelineData} />
+              </div>
 
-              <section id="about" className="max-w-6xl mx-auto px-6 relative z-20 py-32 border-t border-white/5">
-                <div className="h-32 flex items-center mb-10 overflow-hidden">
-                  <motion.header style={{ y: yTech }} className="relative z-10 w-full">
-                    <h2 className="text-5xl font-bold text-white font-display tracking-tight text-left uppercase italic">
-                      Technical Arsenal
-                    </h2>
-                  </motion.header>
+              {/* SECTION 4: TECHNICAL ARSENAL */}
+              <section id="about" className="max-w-6xl mx-auto px-6 py-32 border-t border-white/5 relative z-40 bg-black">
+                <div className="mb-20">
+                  <h2 className="text-6xl font-black uppercase italic tracking-tighter">
+                    Technical <span className="text-blue-600 underline decoration-blue-500/30">Arsenal</span>
+                  </h2>
                 </div>
 
-                <div className="flex flex-wrap gap-4 mb-16 relative z-30">
+                <div className="flex flex-wrap gap-4 mb-20">
                   {['ALL', 'WEB_DEV', 'HARDWARE', 'CONTENT_STRATEGY'].map(cat => (
-                    <button key={cat} onClick={() => setActiveCategory(cat)} className={`px-6 py-2.5 text-[11px] font-bold rounded-full border transition-all ${activeCategory === cat ? 'bg-white text-black border-white' : 'bg-transparent border-white/10 text-zinc-500 hover:text-white hover:border-white/30'}`}>
+                    <button key={cat} onClick={() => setActiveCategory(cat)} className={`px-8 py-3 text-[11px] font-bold rounded-full border transition-all duration-300 ${activeCategory === cat ? 'bg-white text-black border-white' : 'bg-transparent border-white/10 text-zinc-500 hover:text-white hover:border-white/40'}`}>
                       {cat.replace('_', ' ')}
                     </button>
                   ))}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {filteredSkills.map((skill: Skill) => (<SkillCard key={skill.id} skill={skill} />))}
+                </div>
+              </section>
+
+              {/* SECTION 5: SERVICES */}
+              <section id="services" className="max-w-7xl mx-auto px-6 py-32 border-t border-white/5 relative z-40 bg-black">
+                <div className="mb-20 text-center">
+                  <h2 className="text-6xl font-black uppercase italic tracking-tighter mb-4">
+                    Services <span className="text-blue-600 underline decoration-blue-500/30">Offered</span>
+                  </h2>
+                  <p className="text-zinc-500 text-lg max-w-2xl mx-auto">Click a service to explore deployment protocols and live examples.</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center">
+                  {servicesData.map((service, index) => (
+                    <ServicesCard 
+                      key={index}
+                      title={service.title}
+                      description={service.description}
+                      MasteryBadge={service.mastery}
+                      CTAText="01_VIEW_PORTFOLIO.EXE"
+                    />
+                  ))}
                 </div>
               </section>
 
               <InfiniteMenuSection />
               
-              {/* TERMINAL CONTACT */}
-              <section id="contact" className="py-24"><Contact /></section>
+              {/* SECTION 6: CONTACT */}
+              <section id="contact" className="relative z-40 bg-black">
+                <Contact />
+              </section>
+
             </motion.div>
           ) : (
-            <div className="pt-40 pb-40 px-6 max-w-6xl mx-auto font-sans text-center">
-                <button onClick={() => setView('home')} className="mb-12 text-blue-500 font-bold text-sm hover:text-white transition-colors uppercase tracking-widest italic">← Back to Overview</button>
+            <div className="min-h-screen flex items-center justify-center">
+                <button onClick={() => setView('home')} className="px-10 py-4 bg-white text-black font-black uppercase tracking-widest italic hover:bg-blue-600 hover:text-white transition-all rounded-full">
+                  ← Back to Main Protocol
+                </button>
             </div>
           )}
         </AnimatePresence>
 
-        <footer className="py-12 text-center text-zinc-700 text-[11px] border-t border-white/5 uppercase tracking-[0.3em] font-mono">
-          © {new Date().getFullYear()} AG Evangelista // TUPV Comptech Department
+        {/* FOOTER */}
+        <footer className="py-20 text-center border-t border-white/5 bg-black relative z-50">
+          <p className="text-zinc-600 text-[11px] uppercase tracking-[0.5em] font-medium">
+            © {new Date().getFullYear()} AG EVANGELISTA // TUPV COMPTECH
+          </p>
         </footer>
       </div>
     </div>
   );
 }
 
+// --- SUB-COMPONENT: SKILLCARD (Icon Handling) ---
 const SkillCard = ({ skill }: { skill: Skill }) => {
-  // Try loading the webp version specifically
   const iconPath = new URL(`./assets/tech/${skill.id}.webp`, import.meta.url).href;
 
   return (
     <GlareHover 
-      width="100%" 
-      height="auto" 
+      width="100%" height="auto" 
       background="rgba(255, 255, 255, 0.02)" 
       borderColor="rgba(255, 255, 255, 0.05)" 
-      glareColor="#3b82f6" 
-      glareOpacity={0.08} 
-      className="skill-card-trigger group rounded-xl"
+      glareColor="#3b82f6" glareOpacity={0.08} 
+      className="skill-card-trigger group rounded-[2rem]"
     >
-      <div className="p-8 w-full space-y-6 text-left font-sans">
-        <div className="flex items-center gap-5">
-          <div className="w-14 h-14 rounded-xl bg-zinc-900/50 p-3 border border-white/5 flex items-center justify-center overflow-hidden">
+      <div className="p-10 w-full space-y-8">
+        <div className="flex items-center gap-6">
+          <div className="w-16 h-16 rounded-2xl bg-white/[0.03] p-4 border border-white/10 flex items-center justify-center overflow-hidden">
             <img 
-              src={iconPath} 
-              alt={skill.name} 
-              className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110" 
+              src={iconPath} alt={skill.name} 
+              className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-700" 
               onError={(e) => { 
-                // 1. Try PNG if WebP fails
                 if (!e.currentTarget.src.includes('.png') && !e.currentTarget.src.includes('simpleicons')) {
                   e.currentTarget.src = new URL(`./assets/tech/${skill.id}.png`, import.meta.url).href;
-                } 
-                // 2. Finally, try Simple Icons if both local files fail
-                else {
+                } else {
                   const fallbackId = skill.id === 'capcut' ? 'video' : skill.id;
                   e.currentTarget.src = `https://cdn.simpleicons.org/${fallbackId}/white`;
-                  
-                  // Prevent infinite loop if Simple Icon also 404s
-                  e.currentTarget.onerror = () => {
-                    e.currentTarget.src = 'https://cdn.simpleicons.org/elementor/white'; 
-                  };
+                  e.currentTarget.onerror = () => { e.currentTarget.src = 'https://cdn.simpleicons.org/elementor/white'; };
                 }
               }} 
             />
           </div>
-          <h3 className="text-xl font-bold text-white font-display group-hover:text-blue-500 transition-colors uppercase italic tracking-tighter">
-            {skill.name}
-          </h3>
+          <h3 className="text-2xl font-black uppercase italic tracking-tighter group-hover:text-blue-500 transition-colors">{skill.name}</h3>
         </div>
-        <div className="flex items-baseline gap-2 font-display">
-          <span className="text-4xl font-black text-white italic">{skill.projectCount}</span>
-          <span className="text-[11px] text-zinc-500 font-bold uppercase tracking-widest font-mono">Builds</span>
+        <div className="flex items-baseline gap-3">
+          <span className="text-5xl font-black italic">{skill.projectCount}</span>
+          <span className="text-xs text-zinc-600 font-black uppercase tracking-widest">Builds</span>
         </div>
-        <p className="text-sm text-zinc-400 leading-relaxed line-clamp-2">{skill.description}</p>
+        <p className="text-sm text-zinc-500 leading-relaxed line-clamp-2 font-light">{skill.description}</p>
       </div>
     </GlareHover>
   );
