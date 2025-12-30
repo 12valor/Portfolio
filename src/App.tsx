@@ -69,11 +69,27 @@ const timelineData = [
   {
     title: "2025",
     content: (
-      <div className="font-poppins">
-        <p className="text-white text-lg font-bold mb-8 italic">Pivoting towards AI Infrastructure & Modern UI Frameworks.</p>
-        <div className="grid grid-cols-2 gap-4">
-          <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=800" className="rounded-3xl h-48 w-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Work 01" />
-          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800" className="rounded-3xl h-48 w-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Work 02" />
+      <div className="font-poppins flex flex-col"> {/* Add flex-col here for sibling alignment */}
+        {/* Text is contained normally */}
+        <p className="text-white text-lg font-bold mb-8 italic max-w-3xl">
+          Pivoting towards AI Infrastructure & Modern UI Frameworks.
+        </p>
+        
+        {/* 1. Reduced from w-full to w-1/2 for half size.
+            2. Added 'ml-auto' to push it to the right side.
+            3. Kept grid-cols-2 so the 2 images inside are side-by-side within their new half-size container.
+        */}
+        <div className="grid grid-cols-2 gap-4 w-1/2 ml-auto bg-zinc-900/50 p-4 rounded-3xl border border-white/5 shadow-2xl">
+          <img 
+            src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=800" 
+            className="rounded-2xl h-40 w-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
+            alt="Work 01" 
+          />
+          <img 
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800" 
+            className="rounded-2xl h-40 w-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
+            alt="Work 02" 
+          />
         </div>
       </div>
     ),
@@ -81,10 +97,18 @@ const timelineData = [
   {
     title: "2024",
     content: (
-      <div className="font-poppins">
-        <p className="text-white text-lg font-bold mb-8 italic">Scaled RoastBloxx and mastered digital content hooks.</p>
-        <div className="h-64 bg-zinc-900/50 rounded-3xl overflow-hidden border border-white/5">
-          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Work 03" />
+      <div className="font-poppins flex flex-col">
+        <p className="text-white text-lg font-bold mb-8 italic max-w-3xl">
+          Scaled RoastBloxx and mastered digital content hooks.
+        </p>
+        
+        {/* Apply same logic to 2024 entry for visual consistency */}
+        <div className="h-40 bg-zinc-900/50 rounded-3xl overflow-hidden border border-white/5 w-1/2 ml-auto shadow-2xl">
+          <img 
+            src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000" 
+            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
+            alt="Work 03" 
+          />
         </div>
       </div>
     ),
