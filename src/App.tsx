@@ -69,27 +69,26 @@ const timelineData = [
   {
     title: "2025",
     content: (
-      <div className="font-poppins flex flex-col"> {/* Add flex-col here for sibling alignment */}
-        {/* Text is contained normally */}
-        <p className="text-white text-lg font-bold mb-8 italic max-w-3xl">
-          Pivoting towards AI Infrastructure & Modern UI Frameworks.
-        </p>
+      <div className="font-poppins flex flex-col md:flex-row items-start gap-12"> 
         
-        {/* 1. Reduced from w-full to w-1/2 for half size.
-            2. Added 'ml-auto' to push it to the right side.
-            3. Kept grid-cols-2 so the 2 images inside are side-by-side within their new half-size container.
-        */}
-        <div className="grid grid-cols-2 gap-4 w-1/2 ml-auto bg-zinc-900/50 p-4 rounded-3xl border border-white/5 shadow-2xl">
-          <img 
-            src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=800" 
-            className="rounded-2xl h-40 w-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
-            alt="Work 01" 
-          />
-          <img 
-            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800" 
-            className="rounded-2xl h-40 w-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
-            alt="Work 02" 
-          />
+        {/* TEXT SECTION: Minimized, side-aligned, and non-italic */}
+        <div className="flex-grow md:w-1/3 pt-2">
+          <p className="text-white text-[13px] font-medium leading-relaxed border-l-2 border-blue-600 pl-4 uppercase tracking-wider">
+            Pivoting towards AI Infrastructure & Modern UI Frameworks.
+          </p>
+        </div>
+        
+        {/* IMAGE SECTION: 2x2 Grid with 9:16 Aspect Ratio */}
+        <div className="grid grid-cols-2 gap-4 w-full md:w-[45%] ml-auto">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="aspect-[9/16] bg-zinc-900/50 rounded-xl overflow-hidden border border-white/10 shadow-2xl group">
+              <img 
+                src={`https://images.unsplash.com/photo-${1633356122544 + i}-f134324a6cee?q=80&w=800`} 
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" 
+                alt={`Evolution_Node_0${i}`} 
+              />
+            </div>
+          ))}
         </div>
       </div>
     ),
@@ -97,18 +96,23 @@ const timelineData = [
   {
     title: "2024",
     content: (
-      <div className="font-poppins flex flex-col">
-        <p className="text-white text-lg font-bold mb-8 italic max-w-3xl">
-          Scaled RoastBloxx and mastered digital content hooks.
-        </p>
+      <div className="font-poppins flex flex-col md:flex-row items-start gap-12">
+        <div className="flex-grow md:w-1/3 pt-2">
+          <p className="text-white text-[13px] font-medium leading-relaxed border-l-2 border-blue-600 pl-4 uppercase tracking-wider">
+            Scaled RoastBloxx and mastered digital content hooks.
+          </p>
+        </div>
         
-        {/* Apply same logic to 2024 entry for visual consistency */}
-        <div className="h-40 bg-zinc-900/50 rounded-3xl overflow-hidden border border-white/5 w-1/2 ml-auto shadow-2xl">
-          <img 
-            src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000" 
-            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
-            alt="Work 03" 
-          />
+        <div className="grid grid-cols-2 gap-4 w-full md:w-[45%] ml-auto">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="aspect-[9/16] bg-zinc-900/50 rounded-xl overflow-hidden border border-white/10 shadow-2xl group">
+              <img 
+                src={`https://images.unsplash.com/photo-${1542751371 + i}-adc38448a05e?q=80&w=1000`} 
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" 
+                alt={`Project_Archive_0${i}`} 
+              />
+            </div>
+          ))}
         </div>
       </div>
     ),
@@ -156,8 +160,8 @@ function App() {
 
               <section id="about" className="max-w-6xl mx-auto px-6 py-32 border-t border-white/5 relative z-40 bg-black">
                 <div className="mb-20">
-                  <h2 className="text-6xl font-black uppercase italic tracking-tighter">
-                    Technical <span className="text-blue-600 underline decoration-blue-500/30">Arsenal</span>
+                  <h2 className="text-4xl md:text-7xl font-bold uppercase tracking-tighter text-white font-display">
+                    Technical <span className="text-blue-600 decoration-blue-500/30">Arsenal</span>
                   </h2>
                 </div>
 

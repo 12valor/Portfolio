@@ -26,7 +26,7 @@ export const Timeline = ({ data }: { data: any[] }) => {
   return (
     <div ref={containerRef} className="w-full bg-zinc-950 relative overflow-visible border-t border-white/5 font-poppins">
       <div className="max-w-7xl mx-auto py-20 px-10">
-        <h2 className="text-5xl font-black italic text-white uppercase tracking-tighter">System_Evolution</h2>
+        <h2 className="text-4xl md:text-7xl font-bold uppercase tracking-tighter text-white font-display">TIMELINE</h2>
       </div>
 
       {/* Adding px-10 to the content wrapper to match your outer header alignment */}
