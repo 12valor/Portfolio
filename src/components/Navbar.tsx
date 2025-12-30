@@ -1,9 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../lib/utils";
 
-// --- SUB-COMPONENTS FROM YOUR PROVIDED CODE ---
 const transition = {
   type: "spring",
   mass: 0.5,
@@ -15,34 +14,36 @@ const transition = {
 
 const MenuItem = ({ setActive, active, item, children }: any) => {
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative">
+    // Added 'group' and padding to bridge the gap between button and menu
+    <div 
+      onMouseEnter={() => setActive(item)} 
+      className="relative pb-2" 
+    >
       <motion.p
         transition={{ duration: 0.3 }}
         className="cursor-pointer text-zinc-400 hover:text-white transition-colors font-display font-medium text-sm"
       >
         {item}
       </motion.p>
-      {active !== null && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={transition}
-        >
-          {active === item && (
-            <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
-              <motion.div
-                transition={transition}
-                layoutId="active"
-                className="bg-zinc-950/90 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)]"
-              >
+      
+      <AnimatePresence>
+        {active === item && children && (
+          <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-2">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.85, y: 10 }}
+              transition={transition}
+            >
+              <div className="bg-zinc-950/90 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
                 <motion.div layout className="w-max h-full p-4">
                   {children}
                 </motion.div>
-              </motion.div>
-            </div>
-          )}
-        </motion.div>
-      )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
@@ -58,9 +59,10 @@ const Menu = ({ setActive, children }: { setActive: (item: string | null) => voi
   );
 };
 
+// --- REMAINDER OF YOUR SUB-COMPONENTS (HoveredLink, ProductItem) ---
 const HoveredLink = ({ children, ...rest }: any) => {
   return (
-    <a {...rest} className="text-zinc-400 hover:text-blue-500 transition-colors text-sm font-sans block py-1">
+    <a {...rest} className="text-zinc-400 hover:text-blue-500 transition-colors text-sm font-sans block py-1 cursor-pointer">
       {children}
     </a>
   );
@@ -86,21 +88,22 @@ export default function Navbar({ setView }: { setView: (v: string) => void }) {
     setView("home");
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
+    setActive(null); // Close menu after clicking
   };
 
   return (
     <div className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-[5000]")}>
       <Menu setActive={setActive}>
-        <div onClick={() => scrollTo("home")} className="flex items-center">
-          <MenuItem setActive={setActive} active={active} item="SYSTEM">
-            <div className="flex flex-col space-y-4 text-sm">
-              <HoveredLink onClick={() => scrollTo("home")}>Initialization</HoveredLink>
-              <HoveredLink onClick={() => scrollTo("parallax-showcase")}>Project Field</HoveredLink>
-              <HoveredLink onClick={() => scrollTo("about")}>Biometric Identity</HoveredLink>
-            </div>
-          </MenuItem>
-        </div>
+        {/* SYSTEM */}
+        <MenuItem setActive={setActive} active={active} item="SYSTEM">
+          <div className="flex flex-col space-y-4 text-sm">
+            <HoveredLink onClick={() => scrollTo("home")}>Initialization</HoveredLink>
+            <HoveredLink onClick={() => scrollTo("parallax-showcase")}>Project Field</HoveredLink>
+            <HoveredLink onClick={() => scrollTo("about")}>Biometric Identity</HoveredLink>
+          </div>
+        </MenuItem>
 
+        {/* PROJECTS */}
         <MenuItem setActive={setActive} active={active} item="PROJECTS">
           <div className="text-sm grid grid-cols-1 gap-6 p-4">
             <ProductItem
@@ -118,6 +121,7 @@ export default function Navbar({ setView }: { setView: (v: string) => void }) {
           </div>
         </MenuItem>
 
+        {/* SERVICES */}
         <MenuItem setActive={setActive} active={active} item="SERVICES">
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink onClick={() => scrollTo("about")}>Tech Arsenal</HoveredLink>
@@ -126,8 +130,11 @@ export default function Navbar({ setView }: { setView: (v: string) => void }) {
           </div>
         </MenuItem>
 
-        <div onClick={() => scrollTo("contact")}>
-          <MenuItem setActive={setActive} active={active} item="CONTACT" />
+        {/* CONTACT */}
+        <div onMouseEnter={() => setActive("CONTACT")}>
+          <MenuItem setActive={setActive} active={active} item="CONTACT">
+             {/* Even though Contact has no children, we wrap it in MenuItem for consistency */}
+          </MenuItem>
         </div>
       </Menu>
     </div>
