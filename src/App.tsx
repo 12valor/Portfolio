@@ -18,21 +18,28 @@ import VideoExamples from './pages/VideoExamples';
 import ArduinoExamples from './pages/ArduinoExamples';
 import GraphicExamples from './pages/GraphicExamples';
 
+import lafImage from "./assets/projects/laf.png";
+import flowImage from "./assets/projects/flow.png";
+import twImage from "./assets/projects/tw.png";
+import ftImage from "./assets/projects/ft.png";
+
 // Data & Type Imports
 import { Skill } from './types/skills';
 import { mySkills } from './data/skillsData';
 
 // --- DATA: PROJECTS FOR PARALLAX ---
 const portfolioProducts = [
-  { title: "AI Parking Monitoring", link: "#", thumbnail: "/parking-monitor.jpg" },
-  { title: "RoastBloxx Channel", link: "https://youtube.com/@RoastBloxx", thumbnail: "/roastbloxx.jpg" },
-  { title: "Technowatch Terminal", link: "#", thumbnail: "/technowatch.jpg" },
-  { title: "Adriano's Branding", link: "#", thumbnail: "/adrianos.jpg" },
-  { title: "Flow E-Commerce", link: "#", thumbnail: "/flow.jpg" },
-  { title: "Arduino IoT Labs", link: "#", thumbnail: "/arduino.jpg" },
-  { title: "QuickQ Production", link: "#", thumbnail: "/quickq.jpg" },
-  { title: "TensorFlow Models", link: "#", thumbnail: "/tensorflow.jpg" },
-  { title: "Modern OS Research", link: "#", thumbnail: "/os-research.jpg" },
+  { title: "laf", link: "#", thumbnail: lafImage },
+  { title: "flow", link: "#", thumbnail: flowImage },
+  { title: "tw", link: "#", thumbnail: twImage },
+  { title: "ft", link: "#", thumbnail: ftImage },
+  { title: "laf", link: "#", thumbnail: lafImage },
+  { title: "flow", link: "#", thumbnail: flowImage },
+  { title: "tw", link: "#", thumbnail: twImage },
+  { title: "ft", link: "#", thumbnail: ftImage },
+  { title: "laf", link: "#", thumbnail: lafImage },
+  { title: "flow", link: "#", thumbnail: flowImage },
+  { title: "tw", link: "#", thumbnail: twImage },
 ];
 
 // --- DATA: 4-CARD HIGH-IMPACT SERVICES ---
