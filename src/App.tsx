@@ -154,8 +154,8 @@ export default function App() {
               <HeroParallax products={portfolioProducts} />
             </section>
 
-            <div className="relative mt-[-15rem] md:mt-[-25rem] z-30 px-4 md:px-0">
-              <Timeline data={timelineData} />
+          <div className="relative mt-[-12rem] md:mt-[-35rem] lg:mt-[-45rem] z-30 px-4 md:px-0">
+                <Timeline data={timelineData} />
             </div>
 
             <section id="about" className="max-w-6xl mx-auto px-6 py-20 md:py-32 border-t border-white/5 relative z-40 bg-black">
