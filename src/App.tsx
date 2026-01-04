@@ -7,7 +7,6 @@ import Hero from './components/Hero';
 import { HeroParallax } from './components/HeroParallax';
 import { Timeline } from './components/Timeline';
 import Contact from './components/Contact';
-import TargetCursor from './components/TargetCursor';
 import GlareHover from './components/GlareHover';
 import InfiniteMenuSection from './components/InfiniteMenuSection';
 import ServicesCard from './components/ServicesCard';
@@ -18,6 +17,7 @@ import VideoExamples from './pages/VideoExamples';
 import ArduinoExamples from './pages/ArduinoExamples';
 import GraphicExamples from './pages/GraphicExamples';
 
+// Image Imports
 import lafImage from "./assets/projects/laf.png";
 import flowImage from "./assets/projects/flow.png";
 import twImage from "./assets/projects/tw.png";
@@ -39,7 +39,6 @@ const portfolioProducts = [
   { title: "ft", link: "#", thumbnail: ftImage },
   { title: "laf", link: "#", thumbnail: lafImage },
   { title: "flow", link: "#", thumbnail: flowImage },
-  { title: "tw", link: "#", thumbnail: twImage },
 ];
 
 // --- DATA: 4-CARD HIGH-IMPACT SERVICES ---
@@ -92,7 +91,7 @@ const timelineData = [
   }
 ];
 
-// --- IMPROVED WORK MODAL WITH SCROLL LOCK ---
+// --- WORK MODAL WITH SCROLL LOCK ---
 const WorkModal = ({ type, onClose }: { type: string; onClose: () => void }) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -143,11 +142,6 @@ export default function App() {
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
       `}</style>
       
-      {/* TargetCursor Layer (Highest Priority z-10000) */}
-      <div className="fixed inset-0 pointer-events-none z-[10000]">
-        <TargetCursor targetSelector="h1, h2, h3, p, a, button, .cursor-pointer" spinDuration={3} hideDefaultCursor={true} />
-      </div>
-
       <Navbar setView={setView} />
 
       <AnimatePresence mode="wait">
