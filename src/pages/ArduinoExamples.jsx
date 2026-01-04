@@ -1,25 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const ArduinoExamples = () => {
   const projects = [
-    { title: "AI Parking System", detail: "Thesis project using Object Detection and Web Connectivity." },
-    { title: "Sensor Network", detail: "Multi-device communication via Arduino firmware." }
+    { title: "Parking Sensors", desc: "AI-Powered Space Detection // Real-time Counting", tags: ["ARDUINO", "PYTHON"] },
+    { title: "IoT Lab Protos", desc: "Gas, Clap, and RFID Sensor Integration", tags: ["C++", "FIRMWARE"] },
+    { title: "Secure Access", desc: "RFID-based System Entry Control", tags: ["IOT", "HARDWARE"] },
+    { title: "Relay Controller", desc: "Multi-device Communication Protocol", tags: ["ARDUINO", "SERIAL"] }
   ];
 
   return (
-    <div className="min-h-screen pt-32 px-6 max-w-4xl mx-auto font-mono">
-      <Link to="/" className="text-blue-500 mb-8 block font-black uppercase tracking-widest text-xs">← Back to System</Link>
-      <h2 className="text-6xl font-black uppercase mb-12 tracking-tighter border-l-4 border-blue-500 pl-6">Arduino_Works</h2>
-      
-      <div className="grid gap-6">
-        {projects.map((p, i) => (
-          <div key={i} className="p-8 bg-zinc-900/50 border border-white/5 hover:border-blue-500/50 transition-all">
-            <h3 className="text-2xl font-black mb-2 uppercase text-white">{p.title}</h3>
-            <p className="text-zinc-500 leading-relaxed">{p.detail}</p>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-poppins">
+      {projects.map((proj, i) => (
+        <div key={i} className="bg-white/[0.02] border border-white/5 p-6 rounded-xl group">
+          <div className="h-40 bg-zinc-900 rounded-lg mb-4 flex items-center justify-center">
+             <span className="text-[10px] text-zinc-800 font-bold tracking-widest uppercase">Firmware_Log_{i + 1}</span>
           </div>
-        ))}
-      </div>
+          <h4 className="text-white font-black text-lg uppercase italic group-hover:text-blue-500 transition-colors">{proj.title}</h4>
+          <p className="text-zinc-500 text-xs mt-1">{proj.desc}</p>
+        </div>
+      ))}
     </div>
   );
 };
