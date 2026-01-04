@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring, useTransform } from 'framer-motion';
 
 // Component Imports
@@ -85,19 +85,24 @@ const timelineData = [
   }
 ];
 
-// --- WORK MODAL COMPONENT ---
+// --- IMPROVED WORK MODAL WITH SCROLL LOCK ---
 const WorkModal = ({ type, onClose }: { type: string; onClose: () => void }) => {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = 'unset'; };
+  }, []);
+
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-10">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} className="absolute inset-0 bg-black/95 backdrop-blur-2xl" />
-      <motion.div initial={{ scale: 0.9, opacity: 0, y: 30 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 30 }} className="relative w-full max-w-6xl max-h-[90vh] bg-zinc-950 border border-white/10 rounded-[2.5rem] overflow-hidden shadow-[0_0_100px_rgba(37,99,235,0.2)] flex flex-col">
+      <motion.div initial={{ scale: 0.95, opacity: 0, y: 30 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 30 }} className="relative w-full max-w-6xl max-h-[90vh] bg-zinc-950 border border-white/10 rounded-[2.5rem] overflow-hidden shadow-[0_0_100px_rgba(37,99,235,0.2)] flex flex-col">
         <div className="p-8 border-b border-white/5 flex justify-between items-center bg-white/[0.01]">
           <div>
             <h2 className="text-3xl font-black uppercase italic tracking-tighter text-white font-poppins">System_<span className="text-blue-500">Documentation</span></h2>
-            <p className="text-zinc-500 text-[10px] uppercase tracking-[0.3em] mt-1 font-poppins">Node: {type.toUpperCase()} // Access_Granted</p>
+            <p className="text-zinc-500 text-[10px] uppercase tracking-[0.3em] mt-1 font-poppins">Node: {type.toUpperCase()} // Archive_Link_Established</p>
           </div>
-          <button onClick={onClose} className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-red-500/20 hover:border-red-500/50 transition-all group">
-            <span className="text-zinc-500 group-hover:text-red-500 text-xl font-bold">✕</span>
+          <button onClick={onClose} className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-600 transition-all group">
+            <span className="text-zinc-500 group-hover:text-white text-xl font-bold">✕</span>
           </button>
         </div>
         <div className="flex-grow overflow-y-auto p-10 custom-scrollbar bg-black/40">
@@ -129,88 +134,87 @@ export default function App() {
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
-        .cursor-priority { z-index: 10000 !important; }
       `}</style>
       
-      {/* NAVBAR LAYER (z-5000) */}
-      <Navbar setView={setView} />
-
-      <div className="relative z-10 overflow-visible">
-        <AnimatePresence mode="wait">
-          {view === 'home' && (
-            <motion.div key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <section id="home" className="h-screen overflow-hidden">
-                <motion.div style={{ y: yHero }} className="h-full"><Hero /></motion.div>
-              </section>
-
-              <section id="parallax-showcase" className="relative z-20 mb-0">
-                <HeroParallax products={portfolioProducts} />
-              </section>
-
-              {/* TIMELINE LAYER (z-30) */}
-              <div className="relative mt-[-15rem] md:mt-[-25rem] lg:mt-[-35rem] z-30">
-                <Timeline data={timelineData} />
-              </div>
-
-              {/* ARSENAL SECTION (z-40) */}
-              <section id="about" className="max-w-6xl mx-auto px-6 py-32 border-t border-white/5 relative z-40 bg-black">
-                <div className="mb-20">
-                  <h2 className="text-6xl font-black uppercase italic tracking-tighter">Technical <span className="text-blue-600 underline decoration-blue-500/30">Arsenal</span></h2>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {filteredSkills.map((skill: Skill) => (<SkillCard key={skill.id} skill={skill} />))}
-                </div>
-              </section>
-
-              {/* SERVICES SECTION (z-40) */}
-              <section id="services" className="max-w-7xl mx-auto px-6 py-32 border-t border-white/5 relative z-40 bg-black">
-                <div className="mb-20 text-center">
-                  <h2 className="text-6xl font-black uppercase italic tracking-tighter mb-4">Services <span className="text-blue-600 underline decoration-blue-500/30">Offered</span></h2>
-                  <p className="text-zinc-500 text-lg max-w-2xl mx-auto">Click a service card to initialize visual documentation logs.</p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 place-items-center">
-                  {servicesData.map((service, index) => (
-                    <ServicesCard key={index} {...service} onClick={() => setActiveModal(service.path)} />
-                  ))}
-                </div>
-              </section>
-
-              <InfiniteMenuSection />
-              
-              <section id="contact" className="relative z-40 bg-black">
-                <Contact />
-              </section>
-            </motion.div>
-          )}
-        </AnimatePresence>
+      {/* TargetCursor Layer (Highest Priority z-10000) */}
+      <div className="fixed inset-0 pointer-events-none z-[10000]">
+        <TargetCursor targetSelector="h1, h2, h3, p, a, button, .cursor-pointer" spinDuration={3} hideDefaultCursor={true} />
       </div>
 
-      {/* MODAL OVERLAY LAYER (z-9999) */}
+      <Navbar setView={setView} />
+
+      <AnimatePresence mode="wait">
+        {view === 'home' && (
+          <motion.main key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="relative z-10">
+            
+            <section id="home" className="h-screen overflow-hidden">
+              <motion.div style={{ y: yHero }} className="h-full"><Hero /></motion.div>
+            </section>
+
+            <section id="parallax-showcase" className="relative z-20 mb-0">
+              <HeroParallax products={portfolioProducts} />
+            </section>
+
+            <div className="relative mt-[-25rem] z-30">
+              <Timeline data={timelineData} />
+            </div>
+
+            <section id="about" className="max-w-6xl mx-auto px-6 py-32 border-t border-white/5 relative z-40 bg-black">
+              <div className="mb-20">
+                <h2 className="text-6xl font-black uppercase italic tracking-tighter">Technical <span className="text-blue-600 underline decoration-blue-500/30">Arsenal</span></h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredSkills.map((skill: Skill) => (<SkillCard key={skill.id} skill={skill} />))}
+              </div>
+            </section>
+
+            <section id="services" className="max-w-7xl mx-auto px-6 py-32 border-t border-white/5 relative z-40 bg-black">
+              <div className="mb-20 text-center">
+                <h2 className="text-6xl font-black uppercase italic tracking-tighter mb-4">Services <span className="text-blue-600 underline decoration-blue-500/30">Offered</span></h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 place-items-center">
+                {servicesData.map((service, index) => (
+                  <ServicesCard key={index} {...service} onClick={() => setActiveModal(service.path)} />
+                ))}
+              </div>
+            </section>
+
+            <InfiniteMenuSection />
+            <section id="contact" className="relative z-40 bg-black"><Contact /></section>
+          </motion.main>
+        )}
+      </AnimatePresence>
+
       <AnimatePresence>
         {activeModal && <WorkModal type={activeModal} onClose={() => setActiveModal(null)} />}
       </AnimatePresence>
 
-      {/* FOOTER LAYER (z-50) */}
       <footer className="py-20 text-center border-t border-white/5 bg-black relative z-50">
-        <p className="text-zinc-600 text-[11px] uppercase tracking-[0.5em] font-medium font-poppins">
-          © {new Date().getFullYear()} AG D. EVANGELISTA // TUPV COMPTECH
-        </p>
+        <p className="text-zinc-600 text-[11px] uppercase tracking-[0.5em] font-medium font-poppins">© {new Date().getFullYear()} AG D. EVANGELISTA // TUPV COMPTECH</p>
       </footer>
-
-      {/* TARGET CURSOR LAYER (z-10000) - FIXED: Now renders last and on top */}
-      <div className="fixed inset-0 pointer-events-none cursor-priority">
-        <TargetCursor targetSelector="h1, h2, h3, p, a, button, .cursor-pointer" spinDuration={3} hideDefaultCursor={true} />
-      </div>
     </div>
   );
 }
 
+// --- RESTORED SKILL CARD WITH ICONS ---
 const SkillCard = ({ skill }: { skill: Skill }) => {
+  const iconUrl = `https://cdn.simpleicons.org/${skill.id}/white`;
   return (
     <GlareHover width="100%" height="auto" background="rgba(255, 255, 255, 0.02)" borderColor="rgba(255, 255, 255, 0.05)" glareColor="#3b82f6" glareOpacity={0.08} className="skill-card-trigger group rounded-[2rem]">
       <div className="p-10 w-full space-y-8 font-poppins">
-        <h3 className="text-2xl font-black uppercase italic tracking-tighter group-hover:text-blue-500 transition-colors">{skill.name}</h3>
-        <p className="text-sm text-zinc-500 leading-relaxed line-clamp-2 font-light">{skill.description}</p>
+        <div className="flex items-center justify-between">
+          <div className="w-14 h-14 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center overflow-hidden group-hover:border-blue-500/50 transition-all duration-500">
+            <img src={iconUrl} alt={skill.name} className="w-7 h-7 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" onError={(e) => { e.currentTarget.src = 'https://cdn.simpleicons.org/elementor/white'; }} />
+          </div>
+          <div className="flex items-baseline gap-2">
+            <span className="text-3xl font-black italic text-zinc-800 group-hover:text-blue-500/20 transition-colors">{skill.projectCount || '0'}</span>
+            <span className="text-[9px] text-zinc-600 font-bold uppercase tracking-widest">Builds</span>
+          </div>
+        </div>
+        <div>
+          <h3 className="text-2xl font-black uppercase italic tracking-tighter text-white group-hover:text-blue-500 transition-colors">{skill.name}</h3>
+          <p className="text-sm text-zinc-500 mt-4 leading-relaxed line-clamp-2 font-light">{skill.description}</p>
+        </div>
       </div>
     </GlareHover>
   );
